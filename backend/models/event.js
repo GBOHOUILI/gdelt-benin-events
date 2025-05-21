@@ -26,6 +26,6 @@ eventSchema.index({ Year: 1 });
 eventSchema.index({ sentiment: 1 });
 eventSchema.index({ ActionGeo_FullName: 1 });
 
-const Event = mongoose.model('Event', eventSchema);
+const Event = mongoose.model('Event', eventSchema, 'events');
 
 module.exports = Event;

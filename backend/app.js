@@ -2,6 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const apiRoutes = require('./routes/api');
+const dotenv = require('dotenv');
+
+
+dotenv.config();
+
 
 
 // Connexion à la base de données
@@ -20,7 +25,6 @@ app.use('/api', apiRoutes);
 app.get('/', (req, res) => {
   res.send('API du GDELT Bénin est en ligne');
 });
-
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Route non trouvée' });

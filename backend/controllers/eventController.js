@@ -34,7 +34,7 @@ exports.getStats = async (req, res) => {
       avgGoldstein: avgGoldsteinResult.length > 0 ? avgGoldsteinResult[0].avgGoldstein : 0,
       sentimentDistribution: sentimentCounts
     };
-
+    console.log(stats);
     res.json(stats);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -62,7 +62,7 @@ exports.getTimeline = async (req, res) => {
       }},
       { $sort: { "_id.year": 1, "_id.month": 1 } }
     ]);
-    
+    console.log(timelineData);
     res.json(timelineData);
   } catch (error) {
     res.status(500).json({ message: error.message });

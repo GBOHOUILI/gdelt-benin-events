@@ -11,5 +11,5 @@ router.get('/events', getEvents);
 router.get('/years', getYears);
 router.get('/themes', getThemes);
 router.get('/events/:id', getEventById);
-
+ 
 module.exports = router;
