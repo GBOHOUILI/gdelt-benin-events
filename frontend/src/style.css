@@ -1,0 +1,48 @@
+body {
+    background-color: #f4f8fb;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .section {
+    padding: 2rem;
+    background-color: white;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .sentiment-positive {
+    color: green;
+  }
+  .sentiment-negative {
+    color: red;
+  }
+  .sentiment-neutral {
+    color: orange;
+  }
+  .event-list {
+    height: 400px;
+    overflow-y: auto;
+  }
+  .page-link {
+    cursor: pointer;
+  }
+

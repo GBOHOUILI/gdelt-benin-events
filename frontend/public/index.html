@@ -1,0 +1,152 @@
+<!-- frontend/public/index.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard GDELT - Bénin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/style.css">
+  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
+  <style></style>
+</head>
+<body>
+  <div class="header d-flex align-items-center mb-4" style="gap: 20px;">
+    <div>
+      <img src="assets/Untitled-removebg-preview.png" alt="Logo Benin Events" style="height: 150px;">
+    </div>
+    <div class="flex-grow-1 text-center">
+      <h1 class="mb-1">Tableau de bord GDELT - Bénin</h1>
+      <p class="mb-0">Visualisation des événements et sentiments liés au Bénin</p>
+    </div>
+  </div>
+  
+  
+
+  <div class="container">
+    <!-- Filtres -->
+    <div class="section">
+      <h4>Filtres</h4>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="yearSelect" class="form-label">Année</label>
+          <select id="yearSelect" class="form-select">
+            <option value="">Toutes les années</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="sentimentSelect" class="form-label">Sentiment</label>
+          <select id="sentimentSelect" class="form-select">
+            <option value="">Tous</option>
+            <option value="positif">Positif</option>
+            <option value="négatif">Négatif</option>
+            <option value="neutre">Neutre</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="themeSelect" class="form-label">Thème</label>
+          <select id="themeSelect" class="form-select">
+            <option value="">Tout les thèmes</option>
+          </select>
+        </div>
+      </div>
+      <div class="text-center">
+        <button id="applyFilters" class="btn btn-primary">Appliquer les filtres</button>
+      </div>
+    </div>
+
+    <!-- Statistiques -->
+    <div class="section">
+      <h4>Statistiques descriptives</h4>
+      <div id="stats" class="row">
+        <div class="col-md-4 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nombre d'événements</h5>
+              <p id="totalEvents" class="card-text display-4">-</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ton moyen</h5>
+              <p id="avgTone" class="card-text display-4">-</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Score Goldstein moyen</h5>
+              <p id="avgGoldstein" class="card-text display-4">-</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4">
+        <div id="sentimentChart"></div>
+      </div>
+      <div id="sentimentPieChart" style="width:100%;max-width:600px;height:400px;margin:auto;"></div>
+    </div>
+
+ 
+
+
+    <!-- Graphique temporel -->
+    <div class="section">
+      <h4>Distribution des événements par mois</h4>
+      <div id="timelineChart"></div>
+    </div>
+
+    <!-- Carte géographique -->
+    <div class="section">
+      <h4>Carte des événements</h4>
+      <div id="map"></div>
+    </div>
+
+    <!-- Liste des événements -->
+    <div class="section">
+      <h4>Événements récents</h4>
+      <div id="eventsList" class="event-list">
+        <div class="loader" id="eventsLoader"></div>
+      </div>
+      <div class="mt-3">
+        <div class="fixed-bottom-left">
+          <button id="openChatbot" class="btn btn-success"><img class="robot-icon" src="assets/businessman.png" alt=""></button>
+        </div>
+        <!-- Modale Chatbot -->
+        <div class="modal fade" id="chatbotModal" tabindex="-1" aria-labelledby="chatbotModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="chatbotModalLabel">Chatbot GDELT</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div id="chatbox">
+                  <div id="chatHistory" style="height: 300px; overflow-y: scroll;"></div>
+                  <input type="text" id="userInput" class="form-control" placeholder="Posez votre question..." />
+                  <button id="sendButton" class="btn btn-primary mt-2">Envoyer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button id="downloadExcelBtn" class="btn btn-success mb-3">Télécharger en Excel</button>
+        <nav aria-label="Page navigation">
+          <ul class="pagination justify-content-center" id="pagination">
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <script src ="script.js"></script>
+</body>
+</html>
